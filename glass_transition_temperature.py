@@ -9,7 +9,9 @@ def density_hyperbola(x, rho0, t0, alpha, bita, gamma):
     rho = rho0 - alpha * dT - bita * H0
     return rho
 
-st.header("Glass transition temperaature from density vs temperature data")
+st.header("Glass transition temperature from density vs temperature data")
 
 st.text("This WebApp was created by Evangelos Voyiatzis.")
+
+
 
