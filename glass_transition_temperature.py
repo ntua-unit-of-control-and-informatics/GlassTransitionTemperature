@@ -11,7 +11,11 @@ def density_hyperbola(x, rho0, t0, alpha, bita, gamma):
 
 st.header("Glass transition temperature from density vs temperature data")
 
-st.text("This WebApp was created by Evangelos Voyiatzis.")
+st.markdown("The implemented method is based on the work of Patrone *et al* (P.N. Patrone, A. Dienstfrey, A.R. Browning, S. Tucker, S. Christensen \"Uncertainty Quantification in Molecular Dynamics Studies of the Glass Transition Temperature\" Polymer 87 (2016) 246-259). It assumes that a single hyberpola, as defined by Eq. (1) in Patrone *et al* and shown below, fits density or specific volume vs temperature data for the entire temperature range.")
+st.markdown("$\\rho \\left(T \\right) = \\rho_0 - \\alpha \\left( T - T_0 \\right) -\\beta H\\left(T, T_0, \\gamma \\right)$\n")
+st.markdown("$H\\left(T, T_0, \\gamma \\right) = \\frac{1}{2} \\left( T - T_0 \\right) + \\sqrt{\\frac{\\left( T - T_0 \\right)^2}{4} + \\exp(\\gamma)}$")
+
+st.markdown("This WebApp was created by Evangelos Voyiatzis.")
 
 # Add interactive elements
 with st.form("myform"):
