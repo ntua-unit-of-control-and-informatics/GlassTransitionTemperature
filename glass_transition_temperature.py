@@ -9,9 +9,9 @@ def density_hyperbola(x, rho0, t0, alpha, bita, gamma):
     rho = rho0 - alpha * dT - bita * H0
     return rho
 
-st.header("Glass transition temperature from density vs temperature data")
+st.header("Glass transition temperature App")
 
-st.markdown("The implemented method is based on the work of Patrone *et al* (P.N. Patrone, A. Dienstfrey, A.R. Browning, S. Tucker, S. Christensen \"Uncertainty Quantification in Molecular Dynamics Studies of the Glass Transition Temperature\" Polymer 87 (2016) 246-259). It assumes that a single hyberpola, as defined by Eq. (1) in Patrone *et al* and shown below, fits density or specific volume vs temperature data for the entire temperature range.")
+st.markdown("The implemented method is based on the work of Patrone *et al* (P.N. Patrone, A. Dienstfrey, A.R. Browning, S. Tucker, S. Christensen \"Uncertainty Quantification in Molecular Dynamics Studies of the Glass Transition Temperature\" Polymer 87 (2016) 246-259). It assumes that a single hyberpola, as defined by Eq. (1) in Patrone *et al* and shown below, fits density vs temperature data for the entire temperature range.")
 st.markdown("$\\rho \\left(T \\right) = \\rho_0 - \\alpha \\left( T - T_0 \\right) -\\beta H\\left(T, T_0, \\gamma \\right)$\n")
 st.markdown("$H\\left(T, T_0, \\gamma \\right) = \\frac{1}{2} \\left( T - T_0 \\right) + \\sqrt{\\frac{\\left( T - T_0 \\right)^2}{4} + \\exp(\\gamma)}$")
 
@@ -41,9 +41,9 @@ if 'data' in st.session_state:
         submit2 = st.form_submit_button("Fit hyberpola")
         if submit2:
             param, param_cov = curve_fit(density_hyperbola, st.session_state['data']['x'], st.session_state['data']['y'])
-            st.write(f"The predicted Tg value is {param[1]:.4f} ")
-            st.write(f"The values of the parameters are: \n\
-            \N{GREEK SMALL LETTER RHO}_0: {param[0]:.4f}\n\
+            st.write(f"The predicted glass transition temperature is {param[1]:.4f} ")
+            st.write(f"The fitted values of the parameters are: \n\
+            \N{GREEK SMALL LETTER RHO}\u2080: {param[0]:.4f}\n\
             \N{GREEK SMALL LETTER ALPHA}: {param[2]:.4f}\n\
             \N{GREEK SMALL LETTER BETA}: {param[3]:.4f}\n\
             \N{GREEK SMALL LETTER GAMMA}: {param[4]:.4f}")
