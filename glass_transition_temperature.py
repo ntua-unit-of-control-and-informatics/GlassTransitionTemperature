@@ -37,11 +37,11 @@ with st.form("myform"):
 # Plot the data
 if 'data' in st.session_state:
     with st.form("myform2"):
-        st.line_chart(st.session_state['data'].set_index('x'), x_label = "Temperature", y_label = "Density")
+        st.scatter_chart(st.session_state['data'].set_index('x'), x_label = "Temperature", y_label = "Density")
         submit2 = st.form_submit_button("Fit hyberpola")
         if submit2:
             param, param_cov = curve_fit(density_hyperbola, st.session_state['data']['x'], st.session_state['data']['y'])
-            st.write(f"The predicted glass transition temperature is {param[1]:.4f} ")
+            st.write(f"The predicted glass transition temperature T\u2080 is {param[1]:.4f} ")
             st.write(f"The fitted values of the parameters are: \n\
             \N{GREEK SMALL LETTER RHO}\u2080: {param[0]:.4f}\n\
             \N{GREEK SMALL LETTER ALPHA}: {param[2]:.4f}\n\
