@@ -10,7 +10,7 @@ def density_hyperbola(x, rho0, t0, alpha, bita, gamma):
     rho = rho0 - alpha * dT - bita * H0
     return rho
 
-st.header("Glass transition temperature App")
+st.header("Glass Transition Temperature App")
 
 st.markdown("The implemented method is based on the work of Patrone *et al* (P.N. Patrone, A. Dienstfrey, A.R. Browning, S. Tucker, S. Christensen \"Uncertainty Quantification in Molecular Dynamics Studies of the Glass Transition Temperature\" Polymer 87 (2016) 246-259). It assumes that a single hyberpola, as defined by Eq. (1) in Patrone *et al* and shown below, fits density vs temperature data for the entire temperature range.")
 st.markdown("$\\rho \\left(T \\right) = \\rho_0 - \\alpha \\left( T - T_0 \\right) -\\beta H\\left(T, T_0, \\gamma \\right)$\n")
@@ -44,9 +44,9 @@ if 'data' in st.session_state:
         if submit2:
             param, param_cov = curve_fit(density_hyperbola, st.session_state['data']['Temperature'], st.session_state['data']['y'])
             y_from_fitting = density_hyperbola(st.session_state['data']['Temperature'], param[0], param[1], param[2], param[3], param[4])
-            st.session_state['data_from_fitting'] = pd.DataFrame({'temperature': st.session_state['data']['Temperature'], 'y_from_fitting': y_from_fitting})
+            st.session_state['data_from_fitting'] = pd.DataFrame({'Temperature': st.session_state['data']['Temperature'], 'y_from_fitting': y_from_fitting})
             #st.scatter_chart(st.session_state['data_from_fitting'].set_index('x'))
-            fig2 = alt.Chart(st.session_state['data_from_fitting']).mark_line(color='red').encode(x='temperature',y='y_from_fitting')
+            fig2 = alt.Chart(st.session_state['data_from_fitting']).mark_line(color='red').encode(x='Temperature',y='y_from_fitting')
             st.altair_chart((fig1 + fig2).interactive())
             st.write(f"The predicted glass transition temperature T\u2080 is {param[1]:.4f} ")
             st.write(f"The fitted values of the parameters are: \n\
