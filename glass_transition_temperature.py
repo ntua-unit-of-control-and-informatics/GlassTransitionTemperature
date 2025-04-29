@@ -41,6 +41,9 @@ if 'data' in st.session_state:
         submit2 = st.form_submit_button("Fit hyberpola")
         if submit2:
             param, param_cov = curve_fit(density_hyperbola, st.session_state['data']['x'], st.session_state['data']['y'])
+            y_from_fitting = density_hyperbola(st.session_state['data']['x'], param[0], param[1], param[2], param[3], param[4])
+            st.session_state['data_from_fitting'] = pd.DataFrame({'x': x, 'y_from_fitting': y_from_fitting})
+            st.scatter_chart(st.session_state['data_from_fitting'].set_index('x'))
             st.write(f"The predicted glass transition temperature T\u2080 is {param[1]:.4f} ")
             st.write(f"The fitted values of the parameters are: \n\
             \N{GREEK SMALL LETTER RHO}\u2080: {param[0]:.4f}\n\
