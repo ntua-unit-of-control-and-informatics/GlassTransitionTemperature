@@ -54,5 +54,7 @@ if 'data' in st.session_state:
 if st.button("Reset"):
     if 'data' in st.session_state:
         del st.session_state['data']
+    if 'data_from_fitting' in st.session_state:
+        del st.session_state['data_from_fitting']
     st.rerun()
 
