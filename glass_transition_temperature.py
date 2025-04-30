@@ -34,7 +34,8 @@ st.markdown("This WebApp was created by Evangelos Voyiatzis.")
 
 # Add interactive elements
 with st.form("myform"):
-    uploaded_file = st.file_uploader("Choose a file", type=["txt", "csv"], help="This is text for help")
+    help_str = "The decimal separator must be a dot and not a comma. The file is assumed to have two columns of equal length: the first is the temperature and the second the density or the specific volume "
+    uploaded_file = st.file_uploader("Choose a file", type=["txt", "csv"], help=help_str)
     option = st.selectbox("Y-data are about:" , ("Density", "Specific Volume"))
     temperature_option = st.selectbox("Temperature unit" , ("Kelvin", "Celcius", "Fahrenheit", "Rankine"))
     submit = st.form_submit_button("Plot data")
