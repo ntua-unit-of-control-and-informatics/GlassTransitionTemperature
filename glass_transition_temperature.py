@@ -55,13 +55,11 @@ with st.form("myform"):
 if 'data' in st.session_state:
     with st.form("myform2"):
         fig1 = alt.Chart(st.session_state['data']).mark_point(filled=True).encode(x='Temperature',y='y') 
-        #st.scatter_chart(st.session_state['data'].set_index('x'), x_label = "Temperature", y_label = "Density")
         submit2 = st.form_submit_button("Fit hyberpola")
         if submit2:
             param, param_cov = curve_fit(density_hyperbola, st.session_state['data']['Temperature'], st.session_state['data']['y'])
             y_from_fitting = density_hyperbola(st.session_state['data']['Temperature'], param[0], param[1], param[2], param[3], param[4])
             st.session_state['data_from_fitting'] = pd.DataFrame({'Temperature': st.session_state['data']['Temperature'], 'y_from_fitting': y_from_fitting})
-            #st.scatter_chart(st.session_state['data_from_fitting'].set_index('x'))
             fig2 = alt.Chart(st.session_state['data_from_fitting']).mark_line(color='red').encode(x='Temperature',y='y_from_fitting')
             st.altair_chart((fig1 + fig2).interactive())
             st.write(f"The predicted glass transition temperature T\u2080 is {param[1]:.4f} Kelvin")
@@ -79,4 +77,3 @@ if st.button("Reset"):
     if 'data_from_fitting' in st.session_state:
         del st.session_state['data_from_fitting']
     st.rerun()
-
