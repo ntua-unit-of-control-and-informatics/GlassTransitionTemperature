@@ -65,7 +65,7 @@ if 'data' in st.session_state:
             #st.scatter_chart(st.session_state['data_from_fitting'].set_index('x'))
             fig2 = alt.Chart(st.session_state['data_from_fitting']).mark_line(color='red').encode(x='Temperature',y='y_from_fitting')
             st.altair_chart((fig1 + fig2).interactive())
-            st.write(f"The predicted glass transition temperature T\u2080 is {param[1]:.4f} ")
+            st.write(f"The predicted glass transition temperature T\u2080 is {param[1]:.4f} Kelvin")
             st.write(f"The fitted values of the parameters are: \n\
             \N{GREEK SMALL LETTER RHO}\u2080: {param[0]:.4f}\n\
             \N{GREEK SMALL LETTER ALPHA}: {param[2]:.4f}\n\
