@@ -4,6 +4,21 @@ import numpy as np
 from scipy.optimize import curve_fit
 import pandas as pd
 
+def convert_temperature(units, temperature):
+    """A function to convert temperature from input units to Kelvin"""
+
+    if units == "Celcius":
+        new_temperature = [x + 273.15 for x in temperature]
+    elif units == "Fahrenheit":
+        new_temperature = [(x - 32.0) / 1.8 + 273.15 for x in temperature]
+    elif units == "Rankine":
+        new_temperature = [x / 1.8 for x in temperature]
+    else:
+        new_temperature = [x for x in temperature]
+
+    return new_temperature
+        
+
 def density_hyperbola(x, rho0, t0, alpha, bita, gamma):
     dT = x - t0
     H0 = 0.5 * dT + np.sqrt(0.25 * dT * dT + np.exp(gamma))
@@ -22,12 +37,14 @@ st.markdown("This WebApp was created by Evangelos Voyiatzis.")
 with st.form("myform"):
     uploaded_file = st.file_uploader("Choose a file", type=["txt", "csv"], help="This is text for help")
     option = st.selectbox("Y-data are about:" , ("Density", "Specific Volume"))
+    temperature_option = st.selectbox("Temperature unit" , ("Kelvin", "Celcius", "Fahrenheit", "Rankine"))
     submit = st.form_submit_button("Plot data")
     if submit:
         if uploaded_file is not None:
             input_stream = uploaded_file.getvalue().decode('utf-8').replace(",", "").split()
             x = [float(i) for i in input_stream[0::2]]
-            if option=="Density":
+            x = convert_temperature(temperature_option, x)
+            if option == "Density":
                 y = [float(i) for i in input_stream[1::2]]
             else:
                 y = [1.0/float(i) for i in input_stream[1::2]]
