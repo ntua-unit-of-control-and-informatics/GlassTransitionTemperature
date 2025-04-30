@@ -17,7 +17,6 @@ def convert_temperature(units, temperature):
         new_temperature = [x for x in temperature]
 
     return new_temperature
-        
 
 def density_hyperbola(x, rho0, t0, alpha, bita, gamma):
     dT = x - t0
