@@ -71,7 +71,7 @@ if 'data' in st.session_state:
                 \N{GREEK SMALL LETTER BETA}: {param[3]:.4f}\n\
                 \N{GREEK SMALL LETTER GAMMA}: {param[4]:.4f}")
             except RuntimeError as e:
-                st.write(e)
+                st.write("Optimal parameters not found")
         else:
             st.altair_chart(fig1.interactive())
 
